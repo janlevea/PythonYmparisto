@@ -4,7 +4,7 @@ Development-haara on tarkoitettu ohjelman seuraavan version `0.1` kehittämistä
 ## Toimintojen haarat
 Development-haarasta luodaan sovelluksen eri toiminnoille (feature) omat haarat. Haarat ja niihin liittyvät tiedostot ilmenevät seuraavasta taulukosta.
 
-| Haara | Moduli(t) | Tekijä |
+| Haara | Moduuli(t) | Tekijä |
 |---|---|---|
 dev-app | app.py | MikaV
 dev-video | video.py | Kalle
