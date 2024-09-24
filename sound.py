@@ -1,6 +1,7 @@
 # MODUULI ÄÄNIMERKKIEN ANTAMISEEN
 # ===============================
-
+"""A module to produce various sound patterns and play wav-files
+    """
 # KIRJASTOT JA MODUULIT
 # ---------------------
 
@@ -23,7 +24,7 @@ def longBeep():
     """
     winsound.Beep(1000,2000)
 
-def waitMs(ms):
+def waitMs(ms): 
     """Waists for a timeperiod
 
     Args:

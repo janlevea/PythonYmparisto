@@ -1,27 +1,25 @@
 # SOVELLUKSEN PÄÄOHJELMA
 # ======================
 
-# KIRJASTOT JA MODUULIT
-# ---------------------
+# KIRJASTOT
+# ---------
 
-# OpenCV-kirjasto videokameraa varten
-# import cv2
+# MODUULIT
+# --------
 
-# Winsound-kirjasto äänikorttia varten
-import winsound
+import sound # Äänimerkit ja äänitiedostot
+import video # Videomoduuli
 
 # ASETUKSET
 # ---------
+kameraIndeksi: int = 1 # Ensimmäinen kamera on aina 0
 
-kameraIndeksi = 1 # Ensimmäinen kamera on aina 0
+# Käynnistetään videokuva ja ilmoitetaan sen käynnistymisestä äänimerkillä
+sound.parametricBeep(400,330)
+sound.playWav('Alkaa.WAV')
 
-# Funktiot
+# TESTIT KOODAUKSEN AIKANA
+# ========================
 
-def piippaa():
-    """Tuottaa puolen sekunnin 1 kHz äänimerkin
-    """
-    taajuus = 1000 # Hz
-    kesto = 500 # ms
-    winsound.Beep(taajuus, kesto)
-
-piippaa()
+if __name__ == "__main__":
+    pass
