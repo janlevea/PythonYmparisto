@@ -29,3 +29,19 @@ def test_opiskelijanumeroOk_desimaali1():
 # Joukossa desimaalipilkku
 def test_opiskelijanumeroOk_desimaali2():
     assert identityCheck.opiskelijanumeroOk('12,45') == False
+
+# TDD-testausta
+def test_checkHeTuOK():
+    assert identityCheck.checkHeTu('130728-478N') == (0, 'OK')
+
+def test_checkHeTuShort():
+    assert identityCheck.checkHeTu('13028-478N') == (1, 'Henkiötunnus liian lyhyt')
+
+def test_checkHeTuLong():
+    assert identityCheck.checkHeTu('1307288-478N') == (2, 'Henkilötunnus liian pitkä')
+
+def test_checkHetuDays():
+    assert identityCheck.checkHeTu('450728-478N') == (3, 'Päivä virheellinen')
+
+def test_checkHetuMonths():
+    assert identityCheck.checkHeTu('132728-478N') == (4, 'Kuukausi virheellinen')

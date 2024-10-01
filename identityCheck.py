@@ -34,3 +34,9 @@ def opiskelijanumeroOk(opiskelijanumero: str) -> bool:
 # 2. Syntymäaikaosan oikeellisuus
 # 3. Vuosisatakoodit +, - ja A
 # 4. Modulo 31 tarkistus
+
+# Lopullisena tavoitteena on funktio, joka tarkistaa henkilötunnuksen oikeellisuuden ja palauttaa virhekoodin ja virheilmoituksen, joka kertoo mikä vika HeTu:ssa on. Esim 0, OK tai 1, tunnus liian lyhyt tai 3, tunnus liian pitkä jne.
+
+def checkHeTu(Hetu):
+    result = (0, 'OK')
+    return result
