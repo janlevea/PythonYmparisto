@@ -11,6 +11,8 @@
 # --------
 
 # Opiskelijatunnuksen oikea muoto
+
+
 def opiskelijanumeroOk(opiskelijanumero: str) -> bool:
     """Checks if student number is 5 or 6 digits and does not contain any characters other than numerics
 
@@ -26,7 +28,6 @@ def opiskelijanumeroOk(opiskelijanumero: str) -> bool:
         if opiskelijanumero.isdigit():
             result = True
     return result
-
 
 
 # Henkilötunnus esimerkki 130728-478N testataan
@@ -53,6 +54,16 @@ def checkHeTu(hetu):
 
     # Sanakirja, jossa on jakojäännösten kirjaintunnukset
     modulusSymbols = {
+        0: '0',
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6',
+        7: '7',
+        8: '8',
+        9: '9',
         10: 'A',
         11: 'B',
         12: 'C',
@@ -90,8 +101,8 @@ def checkHeTu(hetu):
         # Tarkistetaan päiväosan oikeellisuus, pitää olla pelkkiä numeroita
         if dayPart.isdigit():
             day = int(dayPart)
-            
-            # Päivän pitää olla väliltä 1 - 31 
+
+            # Päivän pitää olla väliltä 1 - 31
             if day < 1:
                 result = (3, 'Päivä virheellinen')
             if day > 31:
@@ -105,7 +116,7 @@ def checkHeTu(hetu):
         if monthPart.isdigit():
             month = int(monthPart)
 
-             # Kuukausi pitää olla väliltä 1 - 12 
+            # Kuukausi pitää olla väliltä 1 - 12
             if month < 1:
                 result = (4, 'Kuukausi virheellinen')
             if month > 12:
@@ -121,9 +132,19 @@ def checkHeTu(hetu):
         else:
             result = (5, "Vuosi virheellinen")
 
-        # TODO: Tähän Try-Except, jolla tarkistetaan vuosisatakoodi
+        # Tarkistetaan vuosisatakoodi
+        try:
+            position = list(validCenturyCodes).index(centuryPart)
+        except :
+            result = (6, 'Vuosisatakoodi virheellinen')
 
         # TODO: Tähän modulo 31 tarkisteen laskenta ja vertaus syöteettyn
+        partsCombined = dayPart + monthPart + yearPart + numberPart
+        
+        if partsCombined.isdigit() and result == (0, 'OK') :
+            checkSumCalculated = int(partsCombined)%31
+            if checkSum != modulusSymbols[checkSumCalculated]:
+                result = (7, 'Varmistussumma ei täsmää')
 
     if length < 11:
         result = (1, 'Henkiötunnus liian lyhyt')
@@ -131,8 +152,11 @@ def checkHeTu(hetu):
     if length > 11:
         result = (2, 'Henkilötunnus liian pitkä')
 
-    
     return result
+
+# TODO: Poista loput rivit, kun valmista!
+# KOKEILLAAN ERILAISIA VAIHTOEHTOJA
+# ---------------------------------
 
 if __name__ == "__main__":
     hetu = '130728-478N'
@@ -141,7 +165,7 @@ if __name__ == "__main__":
     # print(paivat)
     # print(kuukaudet)
 
-     # Vuosisatakoodien sanakirja
+    # Vuosisatakoodien sanakirja
     centuryCodes = {
         '+': 1800,
         '-': 1900,
@@ -163,10 +187,21 @@ if __name__ == "__main__":
     # print('Vuosisatakoodi * on ', centuryCodes['*'])
 
     # Haetaan indeksinumero listan jäsenelle
+
     try:
         position = validCenturyCodes.index('*')
-        print(position)
-    except:
-        print('Ei löytynyt')
+    except Exception as e:
+        print('Tapahtui virhe:', e)
 
-    
+    print('Ja tämä tulee virheenkäsittelyn jälkken näkyviin')
+
+    searchLetter = '+'
+
+    for value in validCenturyCodes:
+        if value == searchLetter:
+            found = True
+            break
+        else:
+            found = False
+    if found == False:
+        print('Ei löytynyt')
